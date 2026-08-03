@@ -194,10 +194,10 @@
 
 		  }
 
-		public function edit_request($control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $date_releasing, $processing_officer, $status, $request_id){
-			$sql = "UPDATE `tbl_documentrequest` SET  `control_no` = ?, `studentID_no` = ?, `document_name` = ?, `no_ofcopies` = ?, `date_request` = ?, `date_releasing` = ?, `processing_officer` = ?, `status` = ?  WHERE request_id = ?";
+		public function edit_request($control_no, $studentID_no, $document_name, $no_ofcopies, $amount_to_pay, $date_releasing, $processing_officer, $status, $request_id){
+			$sql = "UPDATE `tbl_documentrequest` SET  `control_no` = ?, `studentID_no` = ?, `document_name` = ?, `no_ofcopies` = ?, `amount_to_pay` = ?, `date_releasing` = ?, `processing_officer` = ?, `status` = ?  WHERE request_id = ?";
 			 $stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("ssssssssi", $control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $date_releasing, $processing_officer, $status, $request_id);
+			$stmt->bind_param("ssssssssi", $control_no, $studentID_no, $document_name, $no_ofcopies, $amount_to_pay,  $date_releasing, $processing_officer, $status, $request_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
@@ -206,15 +206,36 @@
 		}
 
 		public function delete_request($request_id){
-				$sql = "DELETE FROM tbl_documentrequest WHERE request_id = ?";
-				 $stmt = $this->conn->prepare($sql);
-				$stmt->bind_param("i", $document_id);
-				if($stmt->execute()){
-					$stmt->close();
-					$this->conn->close();
-					return true;
-				}
+			// Check if the connection is still open
+			if ($this->conn->connect_error) {
+				die("Connection failed: " . $this->conn->connect_error);
 			}
+		
+			// Prepare the SQL statement
+			$sql = "DELETE FROM tbl_documentrequest WHERE request_id = ?";
+			$stmt = $this->conn->prepare($sql);
+		
+			// Check if the preparation of the statement was successful
+			if ($stmt === false) {
+				die("Error preparing statement: " . $this->conn->error);
+			}
+		
+			// Bind the parameter
+			$stmt->bind_param("i", $request_id);
+		
+			// Execute the statement
+			if($stmt->execute()){
+				// Close the statement
+				$stmt->close();
+		
+				// Return true to indicate successful deletion
+				return true;
+			} else {
+				// Return false if the execution fails
+				return false;
+			}
+		}
+		
 
     public function fetchAll_payment(){ 
             $sql = "SELECT *,CONCAT(tbl_student.first_name, ', ' ,tbl_student.middle_name, ' ' ,tbl_student.last_name) as student_name FROM  tbl_payment INNER JOIN tbl_student ON tbl_student.student_id =  tbl_payment.student_id ORDER BY tbl_payment.student_id DESC";

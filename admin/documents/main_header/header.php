@@ -66,13 +66,15 @@
         <!-- navbar -->
         <!-- ============================================================== -->
         <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="index.php"><p style="color: green; font-size: 100%; size: 3em">Custom-Built-Document-Request</p></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
+    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <a class="navbar-brand" href="index.php">
+            <h1 style="color: green; font-size: 15px; font-weight: 800; margin: 0;  ">Custom-Built-Document-Request</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
                          <li class="nav-item dropdown">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge badge-danger count"></span>&nbsp;<i class="fa fa-bell" style="color: black"></i></a>

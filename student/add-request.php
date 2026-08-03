@@ -1,4 +1,4 @@
-       <?php include('main_header/header.php');?>
+<?php include('main_header/header.php');?>
         <!-- ============================================================== -->
         <!-- end navbar -->
         <!-- ============================================================== -->
@@ -12,6 +12,7 @@
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
+        
         <div class="dashboard-wrapper">
             <div class="container-fluid  dashboard-content">
                <!-- ============================================================== -->
@@ -46,24 +47,19 @@
                                                 </div>
                                                 <?php 
 
-                                                  function createRandomcnumber() {
-                                                      $chars = "003232303232023232023456789";
-                                                      srand((double)microtime()*1000000);
-                                                      $i = 0;
-                                                      $control = '' ;
-                                                      while ($i <= 3) {
-
-                                                        $num = rand() % 33;
-
-                                                        $tmp = substr($chars, $num, 1);
-
-                                                        $control = $control . $tmp;
-
-                                                        $i++;
-
-                                                      }
-                                                      return $control;
-                                                     }
+                                                 function createRandomcnumber() {
+                                                        $chars = "003232303232023232023456789";
+                                                        srand((double)microtime()*1000000);
+                                                        $i = 0;
+                                                        $control = '' ;
+                                                        while ($i <= 3) {
+                                                            $num = rand() % 33;
+                                                            $tmp = substr($chars, $num, 1);
+                                                            $control = $control . $tmp;
+                                                            $i++;
+                                                        }
+                                                        return $control;
+                                                    }
                                                      $cNumber ='CTRL-'.createRandomcnumber();
 
                                                      
@@ -73,9 +69,11 @@
                                                 <div class="form-group row">
                                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Control No.</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
-                                                        <input data-parsley-type="alphanum" type="text" value="<?= $cNumber.''.$_SESSION['student_id']; ?>" name="control_no" required="" placeholder="" class="form-control" readonly>
+                                                      <input data-parsley-type="alphanum" type="text" value="<?= $cNumber.''.$_SESSION['student_id']; ?>" name="control_no" required="" placeholder="" class="form-control" readonly>
+
                                                     </div>
                                                 </div>
+                                              
                                                  <?php
                                                       $conn = new class_model();
                                                       $getstudno = $conn->student_profile($student_id);
@@ -89,7 +87,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Document Name</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
-                                                    <select data-parsley-type="alphanum" type="text" id="document_name" required="" placeholder="" class="form-control">
+                                                    <select data-parsley-type="alphanum" type="text" name="document_name" id="document_name" required="" placeholder="" class="form-control">
                                                            <option value="">&larr;Select Document &rarr;</option>
                                                            <option value="Certified true copy f137 g10">Certified true copy f137 g10</option>
                                                            <option value="Certified true copy f137 g11">Certified true copy g11</option>
@@ -107,22 +105,73 @@
                                                        </select>
                                                     </div>
                                                 </div>
-                                               
+                                                <div class="form-group row">
+    <label class="col-12 col-sm-3 col-form-label text-sm-right">Document Name</label>
+    <div class="col-12 col-sm-8 col-lg-6">
+        <select data-parsley-type="alphanum" type="text" name="document_name_2" id="document_name_2" required="" placeholder="" class="form-control">
+            <option value="">&larr;Select Document &rarr;</option>
+            <option value="Certified true copy f137 g10">Certified true copy f137 g10</option>
+            <option value="Certified true copy f137 g11">Certified true copy g11</option>
+            <option value="Certified true copy f137 g10 ">Certified true copy g10</option>
+            <option value="Good Moral">Good Moral</option>
+            <option value="Cert. Of GWA">Cert. Of GWA</option>
+            <option value="Cert. Of Marticulation">Cert. Of Marticulation</option>
+            <option value="Cert. Of Graduation">Cert. Of Graduation</option>
+            <option value="Cert. Of Grades">Cert. Of Grades</option>
+            <option value="Cert. Of Completion">Cert. Of Completion</option>
+            <option value="Cert. Of Enrollment">Cert. Of Enrollment</option>
+            <option value="CAF (GM)">CAF (GM)</option>
+            <option value="CAF (COE)">CAF (COE)</option>
+            <option value="Form 137">Form 137</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-12 col-sm-3 col-form-label text-sm-right">Document Name</label>
+    <div class="col-12 col-sm-8 col-lg-6">
+        <select data-parsley-type="alphanum" type="text" name="document_name_3" id="document_name_3" required="" placeholder="" class="form-control">
+        <option value="">&larr;Select Document &rarr;</option>
+            <option value="Certified true copy f137 g10">Certified true copy f137 g10</option>
+            <option value="Certified true copy f137 g11">Certified true copy g11</option>
+            <option value="Certified true copy f137 g10 ">Certified true copy g10</option>
+            <option value="Good Moral">Good Moral</option>
+            <option value="Cert. Of GWA">Cert. Of GWA</option>
+            <option value="Cert. Of Marticulation">Cert. Of Marticulation</option>
+            <option value="Cert. Of Graduation">Cert. Of Graduation</option>
+            <option value="Cert. Of Grades">Cert. Of Grades</option>
+            <option value="Cert. Of Completion">Cert. Of Completion</option>
+            <option value="Cert. Of Enrollment">Cert. Of Enrollment</option>
+            <option value="CAF (GM)">CAF (GM)</option>
+            <option value="CAF (COE)">CAF (COE)</option>
+            <option value="Form 137">Form 137</option>
+        </select>
+    </div>
+</div>
 
                                                  <div class="form-group row">
-                                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">No. of Copies</label>
+                                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">No. of documents</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
-                                                        <select data-parsley-type="alphanum"  type="text" id="no_ofcopies" required="" placeholder="" class="form-control">
+                                                        <select data-parsley-type="alphanum"  type="text" name="no_ofcopies" id="no_ofcopies" required="" placeholder="" class="form-control">
                                                         <option value="">&larr; Add Copies &rarr;</option>
                                                            <option value="1">1</option>
                                                            <option value="2">2</option>
                                                            <option value="3">3</option>
-                                                           <option value="4">4</option>
-                                                           <option value="5">5</option>
+                                                          
+
+                                                    
                                                         </select>
                                                     </div>
                                                 </div>
 
+                                                   <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Amount to Pay</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <select data-parsley-type="alphanum" type="text" name="amount_to_pay" id="amount_to_pay" required="" placeholder="" class="form-control">
+                                                        <!-- Remove the static "Select Amount" option -->
+                                                    </select>
+                                                </div>
+                                            </div>
                                                 <div class="form-group row">
                                                 <label class="col-12 col-sm-3 col-form-label text-sm-right">Date Request</label>
                                                 <div class="col-12 col-sm-8 col-lg-6">
@@ -169,6 +218,9 @@
     <script type="text/javascript">
      
 
+
+
+        
         $(document).ready(function(){
           var firstName = $('#firstName').text();
           var lastName = $('#lastName').text();
@@ -184,17 +236,23 @@
                   const control_no = document.querySelector('input[name=control_no]').value;
                   const studentID_no = document.querySelector('input[name=studentID_no]').value;
                   const document_name = $('#document_name option:selected').val();
+                  const document_name_2 = $('#document_name_2 option:selected').val(); 
+                  const document_name_3 = $('#document_name_3 option:selected').val();
                   const no_ofcopies = $('#no_ofcopies option:selected').val();
-                  const amount_to_pay = $('#amount_to_pay option:selected').val();
+                  const amount_to_pay = $('#amount_to_pay').val();
                   const date_request = document.querySelector('input[name=date_request]').value;
                   // const date_releasing = document.querySelector('input[name=date_releasing]').value;
                   const student_id = document.querySelector('input[name=student_id]').value;
+
+                  
 
                   var data = new FormData(this.form);
 
                   data.append('control_no', control_no);
                   data.append('studentID_no', studentID_no);
                   data.append('document_name', document_name);
+                  data.append('document_name_2', document_name_2); 
+                  data.append('document_name_3', document_name_3); 
                   data.append('no_ofcopies', no_ofcopies);
                   data.append('amount_to_pay', amount_to_pay);
                   data.append('date_request', date_request);
@@ -202,7 +260,7 @@
                   data.append('student_id', student_id);
 
 
-              if (control_no === '' ||  studentID_no ==='' ||  document_name ==='' ||  no_ofcopies ===''||  amount_to_pay ===''||  date_request ===''){
+              if (control_no === '' ||  studentID_no ==='' ||  no_ofcopies ===''||   date_request ===''){
                       $('#message').html('<div class="alert alert-danger"> Required All Fields!</div>');
                     }else{
                        $.ajax({
@@ -225,9 +283,91 @@
 
               });
           });
+
+          
           
       </script>
 
+<script>
+$(document).ready(function() {
+    // Event listener for document name select elements
+    $('#document_name, #document_name_2, #document_name_3').change(function() {
+        // Get the selected document names
+        var selectedDocument1 = $('#document_name').val().trim();
+        var selectedDocument2 = $('#document_name_2').val().trim();
+        var selectedDocument3 = $('#document_name_3').val().trim();
+        
+        // Determine the number of copies based on the selected documents
+        var numberOfCopies = 0;
+        if (selectedDocument1 !== '') {
+            numberOfCopies++;
+        }
+        if (selectedDocument2 !== '') {
+            numberOfCopies++;
+        }
+        if (selectedDocument3 !== '') {
+            numberOfCopies++;
+        }
+        
+        // Update the number of copies dropdown
+        $('#no_ofcopies').val(numberOfCopies);
+        
+        // Disable the number of copies dropdown to prevent manual changes
+        $('#no_ofcopies').prop('disabled', true);
+    });
+});
+
+
+
+
+
+$(document).ready(function() {
+    // Event listener for both document name select elements
+    $('#document_name, #document_name_2, #document_name_3').change(function() {
+        // Get the selected document names
+        var selectedDocument1 = $('#document_name').val().trim();
+        var selectedDocument2 = $('#document_name_2').val().trim();
+        var selectedDocument3 = $('#document_name_3').val().trim();
+
+        // Map document names to their respective amounts
+        var documentPrices = {
+            "Certified true copy f137 g10": 20,
+            "Certified true copy f137 g11": 20,
+            "Certified true copy f137 g10 ": 20,
+            "Good Moral": 75,
+            "Cert. Of GWA": 75,
+            "Cert. Of Marticulation": 75,
+            "Cert. Of Graduation": 75,
+            "Cert. Of Grades": 75,
+            "Cert. Of Completion": 75,
+            "Cert. Of Enrollment": 75,
+            "CAF (GM)": 115,
+            "CAF (COE)": 115,
+            "Form 137": 150,
+        };
+
+        // Initialize total price
+        var totalPrice = 0;
+
+        // Calculate total price based on selected documents
+        if (selectedDocument1 in documentPrices) {
+            totalPrice += documentPrices[selectedDocument1];
+        }
+        if (selectedDocument2 in documentPrices) {
+            totalPrice += documentPrices[selectedDocument2];
+        }
+        if (selectedDocument3 in documentPrices) {
+            totalPrice += documentPrices[selectedDocument3];
+        }
+        // Update amount_to_pay dropdown with the total price
+        $('#amount_to_pay').empty().append($('<option>', {
+            value: totalPrice,
+            text: totalPrice + ' pesos'
+        })).val(totalPrice);
+    });
+});
+
+</script>
 
 
 <!--     <script>

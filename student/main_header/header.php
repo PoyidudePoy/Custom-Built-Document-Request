@@ -45,7 +45,7 @@
             flex-direction:row;
           }
           body, h1, h2, h3, h4, h5, h6, p {
-            font-family: 'system-ui', sans-serif;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
         }
 
           .one {
@@ -176,6 +176,21 @@ margin: 0px 0;
   margin: 20px 0;
 }
 
+@media (max-width: 768px) {
+    .logout-btn {
+        display: block !important;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .logout-btn a {
+        display: inline-block;
+        padding: 5px 10px;
+        color: #fff;
+        text-decoration: none;
+        background-color: #343a40; /* Adjust the background color as needed */
+        border-radius: 3px;
+    }
+}
     </style>
 
 </head>
@@ -191,14 +206,15 @@ margin: 0px 0;
         <!-- navbar -->
         <!-- ============================================================== -->
         <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="index.php"><p style="color: green; font-size: 100%; size: 3em">Custom-Built-Document-Request</p></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
-                    <ul class="navbar-nav ml-auto navbar-right-top">
+    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <a class="navbar-brand" href="index.php">
+            <h1 style="color: green; font-size: 15px; font-weight: 800; margin: 0;  ">Custom-Built-Document-Request</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
 
                          <li class="nav-item dropdown">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -207,29 +223,27 @@ margin: 0px 0;
 
                             </div>
                         </li>&nbsp;&nbsp;
-                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><!-- <img id="profileImage" alt="" class="user-avatar-md rounded-circle"> -->
-                                <div id="profileImage"></div>
-                            </a>
-                            
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info" style="background-color: #666">
-                                    <h5 class="mb-0 text-white nav-user-name">
-                                    <?php
-
-                                        $student_id = $_SESSION['student_id'];
-                                        $conn = new class_model();
-                                        $user = $conn->student_account($student_id);
-                                        echo '<center><h4 class = "text-warning"><b>Student!</b>,<span id="lastName">'.ucfirst($user['last_name']).'</span>, <span id="firstName">'.ucfirst($user['first_name']).'</span></h4></center>';
-                                    ?>
-                                    </h5>
-                                    <a href="logout/logout.php"><i class="fas fa-power-off mr-2"></i><span class="ml-3">Logout</span></a>
-                                </div>
-<!--                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="../index.html"><i class="fas fa-power-off mr-2"></i>Logout</a> -->
-                            </div>
-                        </li>
+                        <div class="nav-item dropdown nav-user">
+    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div id="profileImage"></div>
+    </a>
+    
+    <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+        <div class="nav-user-info" style="background-color: #666">
+            <h5 class="mb-0 text-white nav-user-name">
+            <?php
+                $student_id = $_SESSION['student_id'];
+                $conn = new class_model();
+                $user = $conn->student_account($student_id);
+                echo '<center><h4 class = "text-warning"><b>Student!</b>,<span id="lastName">'.ucfirst($user['last_name']).'</span>, <span id="firstName">'.ucfirst($user['first_name']).'</span></h4></center>';
+            ?>
+            </h5>
+            <div class="logout-btn"> <!-- Wrap the logout button inside a div -->
+                <a href="logout/logout.php"><i class="fas fa-power-off mr-2"></i><span class="ml-3">Logout</span></a>
+            </div>
+        </div>
+    </div>
+</div>
                     </ul>
                 </div>
             </nav>

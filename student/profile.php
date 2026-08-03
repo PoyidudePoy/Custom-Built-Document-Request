@@ -91,11 +91,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">Password</label>
-                                                        <div class="col-12 col-sm-8 col-lg-6">
-                                                            <input data-parsley-type="alphanum" type="password" name="password" value="<?= $user['password']; ?>" required="" placeholder="" class="form-control">
-                                                        </div>
-                                                    </div>
+    <label class="col-12 col-sm-3 col-form-label text-sm-right">Password</label>
+    <div class="col-12 col-sm-8 col-lg-6">
+        <input data-parsley-type="alphanum" type="password" name="password" value="<?= $user['password']; ?>" required="" placeholder="" class="form-control" id="password">
+    </div>
+    <div class="col-sm-1">
+        <input type="checkbox" id="showPassword"> Show
+    </div>
+</div>
                                                     <div class="form-group row text-right">
                                                         <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
                                                               <input name="student_id" value="<?= $user['student_id']; ?>" class="form-control" hidden>
@@ -201,6 +204,24 @@
               });
           });
       </script>
+     <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the password input field and the toggle checkbox
+    const passwordField = document.querySelector('#password');
+    const toggleCheckbox = document.querySelector('#showPassword');
+
+    // Add event listener to toggle checkbox
+    toggleCheckbox.addEventListener('change', () => {
+        // If checkbox is checked, show password
+        if (toggleCheckbox.checked) {
+            passwordField.type = 'text';
+        } else {
+            // Otherwise, hide password
+            passwordField.type = 'password';
+        }
+    });
+});
+</script>
 </body>
  
 </html>

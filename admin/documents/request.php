@@ -1,4 +1,4 @@
-       <?php include('main_header/header.php');?>
+<?php include('main_header/header.php');?>
         <!-- ============================================================== -->
         <!-- end navbar -->
         <!-- ============================================================== -->
@@ -38,10 +38,15 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Request Information</h5>
+                                <h5 class="card-header">Request Information  <a href="javascript:;" class="text-secondary font-weight-bold text-xs delete-selected" data-toggle="tooltip" data-original-title="Delete selected documents">
+    <i class="fa fa-trash-alt fa-lg"></i> <!-- Added fa-lg class to make the icon larger -->
+</a></h5>
+                                
                                 <div class="card-body">
                                     <div id="message"></div>
                                     <div class="table-responsive">
+                                    
+
                                         <table class="table table-striped table-bordered first">
                                             <thead>
                                                 <tr>
@@ -55,6 +60,9 @@
                                                     <th scope="col">Processing Officer</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
+                                                    <th scope="col">Select</th> <!-- Add this header -->
+                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -98,11 +106,10 @@
                                                     <td class="align-right">
                                                         <a href="edit-request.php?request=<?= $row['request_id']; ?>&student-number=<?php echo $row['studentID_no']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                                           <i class="fa fa-edit"></i>
-                                                        </a> |
-                                                        <a href="javascript:;" data-id="<?= $row['request_id']; ?>" class="text-secondary font-weight-bold text-xs delete" data-toggle="tooltip" data-original-title="Edit user">
-                                                          <i class="fa fa-trash-alt"></i>
-                                                        </a>
+                                                        </a> 
+                                                        
                                                       </td>
+                                                      <td><input type="checkbox" class="document-checkbox" value="<?= $row['request_id']; ?>"></td>
                                                 </tr>
                                              <?php } ?>
                                             </tbody>
@@ -208,6 +215,40 @@ $(document).ready(function(){
  }, 5000);
  
 });
+
+$(document).ready(function() {
+    // Function to handle deletion of selected documents
+    $('.delete-selected').click(function() {
+        var selectedIds = [];
+        // Loop through each checkbox
+        $('.document-checkbox:checked').each(function() {
+            selectedIds.push($(this).val()); // Add the value (request_id) to the array
+        });
+
+        // Check if any documents are selected
+        if (selectedIds.length > 0) {
+            if (confirm("Are you sure want to remove the selected documents?")) {
+                // AJAX request to delete selected documents
+                $.ajax({
+                    url: "../init/controllers/delete_request.php",
+                    method: "POST",
+                    data: {
+                        request_ids: selectedIds // Pass the array of selected IDs to the backend
+                    },
+                    success: function(response) {
+                        $("#message").html(response);
+                    },
+                    error: function(response) {
+                        console.log("Failed");
+                    }
+                });
+            }
+        } else {
+            alert("Please select at least one document to delete.");
+        }
+    });
+});
+
 </script>
 </body>
  

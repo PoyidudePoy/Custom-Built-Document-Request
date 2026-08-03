@@ -276,22 +276,27 @@
 		}
 
 
-		public function add_request($control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $received,  $student_id){
-	       $stmt = $this->conn->prepare("INSERT INTO `tbl_documentrequest` (`control_no`, `studentID_no`, `document_name`, `no_ofcopies`, `date_request`, `status`, `student_id`) VALUES(?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
-			$stmt->bind_param("ssssssi", $control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $received, $student_id);
-			if($stmt->execute()){
-				$stmt->close();
-				$this->conn->close();
-				return true;
-			}
-		}
-
+	public function add_request($control_no, $studentID_no, $document_name, $no_ofcopies, $amount_to_pay, $date_request, $pending, $student_id){
+    $stmt = $this->conn->prepare("INSERT INTO `tbl_documentrequest` (`control_no`, `studentID_no`, `document_name`, `no_ofcopies`, `amount_to_pay`, `date_request`, `status`, `student_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    if (!$stmt) {
+        die("Error preparing statement: " . $this->conn->error);
+    }
+    $stmt->bind_param("sssssssi", $control_no, $studentID_no, $document_name, $no_ofcopies, $amount_to_pay, $date_request, $pending, $student_id);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $this->conn->close();
+        return true;
+    } else {
+        die("Error executing statement: " . $stmt->error);
+    }
+}
+        
 
 
 
 		public function add_myrequest($control_no, $studentID_no, $document_name, $date_releasing, $ref_number, $proof_ofpayment, $student_id, $Verified){
 	       $stmt = $this->conn->prepare("INSERT INTO `tbl_payment` (`control_no`, `studentID_no`, `document_name`, `date_releasing`, `ref_number`, `proof_ofpayment`, `student_id`,`status`) VALUES(?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
-			$stmt->bind_param("ssssssis", $control_no, $studentID_no, $document_name, $date_releasing, $ref_number, $proof_ofpayment, $student_id, $Verified);
+			$stmt->bind_param("sssssis", $control_no, $studentID_no, $document_name, $date_releasing, $ref_number, $proof_ofpayment, $student_id, $Verified);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
@@ -299,10 +304,10 @@
 			}
 		}
 
-		public function edit_request($control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $request_id){
-			$sql = "UPDATE `tbl_documentrequest` SET `control_no` = ?, `studentID_no` = ?, `document_name` = ?, `no_ofcopies` = ?, `date_request` = ? WHERE request_id = ?";
+		public function edit_request($control_no, $studentID_no, $document_name, $no_ofcopies, $amount_to_pay, $date_request, $request_id){
+			$sql = "UPDATE `tbl_documentrequest` SET `control_no` = ?, `studentID_no` = ?, `document_name` = ?, `no_ofcopies` = ?, `amount_to_pay` = ?, `date_request` = ? WHERE request_id = ?";
 			 $stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("sssssi", $control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $request_id);
+			$stmt->bind_param("ssssssi", $control_no, $studentID_no, $document_name, $no_ofcopies, $amount_to_pay, $date_request, $request_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
@@ -310,15 +315,17 @@
 			}
 		}
 
-		public function delete_request($request_id){
-				$sql = "DELETE FROM tbl_documentrequest WHERE request_id = ?";
-				 $stmt = $this->conn->prepare($sql);
-				$stmt->bind_param("i", $document_id);
-				if($stmt->execute()){
-					$stmt->close();
-					$this->conn->close();
-					return true;
-				}
-			}
+	public function delete_request($request_id){
+    $sql = "DELETE FROM tbl_documentrequest WHERE request_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $request_id); // Use $request_id instead of $document_id
+    if($stmt->execute()){
+        $stmt->close();
+        $this->conn->close();
+        return true;
+    } else {
+        return false; // Return false if the execution fails
+    }
+}
 	}	
 ?>

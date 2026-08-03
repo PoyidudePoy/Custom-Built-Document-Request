@@ -1,4 +1,4 @@
-       <?php include('main_header/header.php');?>
+<?php include('main_header/header.php');?>
         <!-- ============================================================== -->
         <!-- end navbar -->
         <!-- ============================================================== -->
@@ -96,29 +96,12 @@
                                                     <select data-parsley-type="alphanum"  type="text" id="no_ofcopies" required="" placeholder="" class="form-control">
                                                     <option value="" <?= ($row['no_ofcopies'] == '') ? 'selected' : ''; ?>>&larr; Add Copies &rarr;</option>
                                                         <option value="1" <?= ($row['no_ofcopies'] == '1') ? 'selected' : ''; ?>>1</option>
-                                                        <option value="2" <?= ($row['no_ofcopies'] == '2') ? 'selected' : ''; ?>>2</option>
-                                                        <option value="3" <?= ($row['no_ofcopies'] == '3') ? 'selected' : ''; ?>>3</option>
-                                                        <option value="4" <?= ($row['no_ofcopies'] == '4') ? 'selected' : ''; ?>>4</option>
-                                                        <option value="5" <?= ($row['no_ofcopies'] == '5') ? 'selected' : ''; ?>>5</option>
+                                        
                                                      </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row">
-                                                 <label class="col-12 col-sm-3 col-form-label text-sm-right">Amount to Pay</label>
-                                                  <div class="col-12 col-sm-8 col-lg-6">
-                                                    <select data-parsley-type="alphanum" type="text" id="amount_to_pay" required="" placeholder="" class="form-control">
-                                                        <option value="">&larr; Select Amount &rarr;</option>
-                                                        <option value="10">10</option>
-                                                        <option value="20">20</option>
-                                                        <option value="30">30</option>
-                                                        <option value="40">40</option>
-                                                        <option value="50">50</option>
-                                                        <option value="60">60</option>
-                                                        
-                                                    </select>
-                                                 </div>
-                                                </div>
+                                               
 
                                                  <div class="form-group row">
                                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Date Request</label>

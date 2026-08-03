@@ -52,7 +52,7 @@
                    <button class="btn btn-lg btn-block" style="background-color:rgb(0,128,0) !important;
                       color: rgb(243, 245, 238) !important;" value="Sign in" id="btn-login" name="btn-login">Sign in</button>
                     </div>
-                     <div class="form-group" id="alert-msg">
+                     <div class="form-group" id="alert-msg"></div>
                 </form>
             </div>
         </div>
