@@ -1,6 +1,6 @@
 # Custom-Built Document Request System
 
-The Custom-Built Document Request System is a capstone project developed in 2024 for Olivarez College Tagaytay.
+The Custom-Built Document Request System is a capstone project for our finals way back 2024
 
 ### ⚠️ DISCLAIMER:
 This project was developed strictly for academic purposes. It is not intended to promote any products, nor is it associated with any unauthorized or commercial use of the university's name.
